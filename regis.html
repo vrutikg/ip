@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+	<title>Registration form</title>
+	
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<meta charset="utf-8">
+	
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width , intial-scale=1">
+	
+	<style>
+	body{
+		background-color:black;
+		justify-content:center;
+		margin-top:0px;
+		margin-bottom:0px;
+	}
+	table{
+		background-color:#83E3D8;
+		width:800px;
+		padding:15px;
+		color:black;
+		border-collapse:collapse;
+		//box-shadow:0 0 10px white,0 0 20px white;
+	}
+	
+	.input{
+		border:0;
+		height:40px;
+		width:90%;
+		border-radius:5px;
+		background-color:rgba(0,0,0,0.1);
+		padding-left:10px;
+                margin-left:20px;
+                margin-right:20px;
+                margin-bottom:0px;
+		font-size:15px;
+		letter-spacing:2px;
+		letter-spacing:2px;
+	}
+	.in{
+		padding-left:10px;
+		border:0;
+		height:40px;
+		width:30%;
+		margin-bottom:20px;
+		margin-top:20px;
+		border-radius:5px;
+		background-color:rgba(0,0,0,0.1);
+		font-size:15px;
+		letter-spacing:2px;
+		
+	}
+	input[type=radio]{
+		width:15px;
+		height:15px;
+		margin-right:10px;
+	}
+	input[type=checkbox]{
+		width:15px;
+		height:15px;
+		margin-right:10px;
+	}
+	label{
+		font-size:20px;
+		padding-right:10px;
+		padding-bottom:0px;
+	}
+	textarea{
+		width:80%;
+		height:30px;
+		border-radius:2px;
+		padding-left:10px;
+		font-size:15px;
+	}
+	tr{
+		text-align:center;
+		height:50px;
+	}
+	input[type=text]:hover,input[type=password]:hover{
+			opacity:0.9;
+	}
+	input[name=register]{
+		background-color:black;
+		color:white;
+		height:45px;
+		width:30%;
+		font-size:20px;
+		
+	}
+	input[name=register]:hover{
+		background-color:green;
+		color:white;
+	}
+	.h1{
+		height:150px;
+		font-family:bold;
+		text-shadow:0 0 10px white,0 0 40px white;
+	}
+	span{
+		color:black;
+	}
+	p{
+		margin-bottom:10px;
+	}
+	</style>
+	
+</head>
+<body>
+<div id="formContent">
+<div class="container" >
+	<form action="" class="form">
+	<table align="center" border=0 class="table table-responsive">
+		<tr class="h1">
+			<td>
+				<h1><br>Registration Form</h1>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<input type="text" class="input uname" name="Username" id="form_fname" placeholder="Username" >
+			<span class="error_form" id="fname_error_message"></span>
+			<p class="error1"></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<input type="text" class="input Email" name="E-mail" id="form_email" placeholder="E-mail" >
+			<span class="error_form" id="email_error_message"></span>
+			<p class="error3"></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<input type="password" class="input pass" name="Password" id="form_password" placeholder="Password(MAX-10 DIGITS)"/>
+			<p class="error4"></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<input type="password" class="input repass" name="Re-type Password" id="form_retype_password" placeholder="Re-type Password" />
+			<span class="error_form" id="retype_password_error_message"></span>
+			<p class="error5"></p>
+			</td>
+		</tr>
+       
+		
+		
+		
+		
+		
+			<td>
+			<input type="submit" name="register" id="registration_form" value="Register" >
+			</td>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
+	</form>
+	</div>
+	</div>
+	<script type="text/javascript">
+	
+		 $(function() {
+
+         $("#fname_error_message").hide();
+         $("#email_error_message").hide();
+         $("#password_error_message").hide();
+         $("#retype_password_error_message").hide();
+
+         var error_fname = false;
+        
+         var error_email = false;
+         var error_password = false;
+         var error_retype_password = false;
+
+         $("#form_fname").focusout(function(){
+            check_fname();
+         });
+         
+         $("#form_email").focusout(function() {
+            check_email();
+         });
+         $("#form_password").focusout(function() {
+            check_password();
+         });
+         $("#form_retype_password").focusout(function() {
+            check_retype_password();
+         });
+
+         function check_fname() {
+            var pattern = /^[a-zA-Z]*$/;
+            var fname = $("#form_fname").val();
+            if (pattern.test(fname) && fname !== '') {
+               $("#fname_error_message").hide();
+               $("#form_fname").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#fname_error_message").html("Should contain only Characters");
+               $("#fname_error_message").show();
+               $("#form_fname").css("border-bottom","2px solid #F90A0A");
+               error_fname = true;
+            }
+         }
+
+         
+
+         function check_password() {
+            var password_length = $("#form_password").val().length;
+            if (password_length < 8) {
+               $("#password_error_message").html("Atleast 8 Characters");
+               $("#password_error_message").show();
+               $("#form_password").css("border-bottom","2px solid #F90A0A");
+               error_password = true;
+            } else {
+               $("#password_error_message").hide();
+               $("#form_password").css("border-bottom","2px solid #34F458");
+            }
+         }
+
+         function check_retype_password() {
+            var password = $("#form_password").val();
+            var retype_password = $("#form_retype_password").val();
+            if (password !== retype_password) {
+               $("#retype_password_error_message").html("Passwords Did not Matched");
+               $("#retype_password_error_message").show();
+               $("#form_retype_password").css("border-bottom","2px solid #F90A0A");
+               error_retype_password = true;
+            } else {
+               $("#retype_password_error_message").hide();
+               $("#form_retype_password").css("border-bottom","2px solid #34F458");
+            }
+         }
+
+         function check_email() {
+            var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var email = $("#form_email").val();
+            if (pattern.test(email) && email !== '') {
+               $("#email_error_message").hide();
+               $("#form_email").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#email_error_message").html("Invalid Email");
+               $("#email_error_message").show();
+               $("#form_email").css("border-bottom","2px solid #F90A0A");
+               error_email = true;
+            }
+         }
+
+         $("#registration_form").submit(function() {
+            error_fname = false;
+            
+            error_email = false;
+            error_password = false;
+            error_retype_password = false;
+
+            check_fname();
+
+            check_email();
+            check_password();
+            check_retype_password();
+
+            if (error_fname === false  && error_email === false && error_password === false && error_retype_password === false) {
+               alert("Registration Successfull");
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+
+
+         });
+      });
+	
+	</script>
+	
+	</body>
+</html>
